@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="metal-normal" src="ImageTextures/TexturesCom_Metal_Corrugated_1K_normal.jpg">
+        <img id="pavement-normal" src="ImageTextures/TexturesCom_CrackedPavementA_1K_normal.jpg">
+        <img id="brick_texture" src="ImageTextures/TexturesCom_Wall_BrickPlain3_2.5x2.5_B_1K_albedo.jpg">
+        <img id="earth-texture" src="https://i.imgur.com/ns7Q3s6.jpeg"> 
+        <img id="beach-texture" src="https://i.imgur.com/05jpOnL.jpeg"> 
+        <img id="spain-texture" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Satellite_image_of_Spain_in_January_2003.jpg/1071px-Satellite_image_of_Spain_in_January_2003.jpg"> 
+        <img id="ciudad-texture" src="https://upload.wikimedia.org/wikipedia/commons/a/af/Mezquita_C%C3%B3rdoba_foto_a%C3%A9rea.jpg"> 
+      </a-assets>
+
+      <a-entity camera wasd-controls position="0 1.6 0"></a-entity>
+           <a-box> </a-box>
+      <!-- Pruebas realizadas en clase -->
+      <a-box position="-0.5 0 -3" width="1" height="1" depth="1" color="#999999" normal-scale="1 1"
+             normal-map="#metal-normal" roughness="0.3" side="double"></a-box>
+      <a-box position="0.5 0 -3" width="1" height="1" depth="1" color="#999999"
+             normal-texture-repeat="1 1" normal-map="#metal-normal" roughness="0.1" side="double"></a-box>
+      <a-box position="1.5 0 -3" width="1" height="1" depth="1" color="#4CC3D9"
+             normal-texture-repeat="1 1" normal-map="#pavement-normal" roughness="100" side="double"></a-box>
+
+      <a-box position="-0.5 -1 -3" width="1" height="1" depth="1"
+             material="color:#9c6f5f; src:#brick_texture; repeat:2 2" side="double"></a-box>
+      <a-box position="0.5 -1 -3" width="1" height="1" depth="1"
+             material="color:#9c6f5f; src:#brick_texture" side="double"></a-box>
+      <a-box position="1.5 -1 -3" width="1" height="1" depth="1"
+             material="color:#9c6f5f; src:#brick_texture" side="double"></a-box>
+
+      <!-- Tarea: He intentado crear el efecto de que te vas acercando cada vez más a la tierra. Primero te acercas a España
+      y luego a Córdoba a medida que te adentras en los objetos -->
+      <a-sphere position="0 2 -11" radius="5" src="#earth-texture" rotation="0 272 315" side="double">
+        <a-sphere position="0 0 0" radius="4.99" color="#000000" side="double"></a-sphere> 
+        <a-plane position="0 0 0" rotation="-38 -271 0" width="5"  side="double" height="5" src="#spain-texture"></a-plane>
+        <a-plane position="0 -0.9 0" rotation="-38 -271 0" width="1"  side="double" height="1" src="#ciudad-texture"></a-plane>
+      </a-sphere> 
+    
+    </a-scene>
+    
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+           
+      <a-assets>
+        <img id="gta" src="img1.png">
+        <img id="darksouls" src="img2.jpg">
+        <img id="lotr" src="img3.png">
+        <img id="hollowknight" src="img4.png">
+        <img id="paisaje" src="img5.png">         
+      </a-assets>
+           
+      <a-sky color="#000000"></a-sky>    
+      <a-entity camera wasd-controls position="0 0 0"></a-entity>
+      <a-box color="#000000" width="30" height="10" depth="0.1" position="0 0 -16"></a-box>
+           
+      <!-- Imagen GTA con marco -->
+      <a-entity position="10 0 -15">
+        <a-box color="#654321" depth="0.1" width="3.2" height="2.5" position="0 0 -0.1"></a-box>
+        <a-image src="#gta" width="3" height="2.25"></a-image>
+      </a-entity>
+         
+      <!-- Imagen Dark Souls con marco curvo -->
+      <!-- Imagen Dark Souls con marco curvo -->
+      <a-entity position="-5 0 -15">
+        <a-curvedimage src="#darksouls" theta-start="135" theta-length="90" radius="0.707" width="1.024" height="0.768" scale="3 3 1"></a-curvedimage>
+      </a-entity>
+           
+      <!-- Imagen Hollow Knight con marco -->
+      <a-entity position="-10 0 -15">
+        <a-box color="#333333" depth="0.1" width="3.2" height="2.5" position="0 0 -0.1"></a-box>
+        <a-image src="#hollowknight" width="3" height="2.25"></a-image>
+      </a-entity>
+           
+      <!-- Imagen El Señor de Anillos con marco curvo y video detrás -->
+         <a-entity position="5 0 -15">
+           <!-- MP4 de la imagen de El Señor de Anillos -->
+           <a-curvedimage src="lotr.mp4" position= "0 0 -3" theta-start="135" theta-length="90" radius="0.707" width="1.024" height="0.707" scale="3 3 1"></a-curvedimage>
+
+           <!-- Imagen LOTR -->
+           <a-curvedimage src="lotr" theta-start="135" theta-length="90" radius="0.707" width="1.024" height="0.707" scale="3 3 1"></a-curvedimage>
+         </a-entity>
+      <!-- Imagen Paisaje con marco -->
+      <a-entity position="0 0 -15">
+        <a-box color="#FFFFFF" depth="0.1" width="3.2" height="2.5" position="0 0 -0.1"></a-box>
+        <a-image src="#paisaje" width="3" height="2.25"></a-image>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>

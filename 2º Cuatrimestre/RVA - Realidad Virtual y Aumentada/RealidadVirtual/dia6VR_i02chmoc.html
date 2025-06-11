@@ -1,0 +1,107 @@
+<!-- Como adición al anterior día he descargado un modelo de Mixamo y lo he convertido a glb. Y lo he añadido
+a la escena con su correspondiente animación. Es el fichero StrutWalking.glb-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/aframeextras@6.1.1/dist/aframe-extras.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.loaders.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-environmentcomponent@1.5.0/dist/aframe-environment-component.min.js">
+    </script>
+  </head>
+  <body>
+    <a-scene background="color: #ECECEC">
+      <!-- Assets -->
+      <a-assets>
+        <a-asset-item id="houseModel" src="Dia6/house_asset.glb"></a-asset-item>
+        <a-asset-item id="jesseModel" src="Dia6/jesse_whitaker.glb"></a-asset-item>
+        <a-asset-item id="wheelchairModel" src="Dia6/wheelchair.glb"></a-asset-item>   
+        <img id="groundTexture" src="Dia6/TexturesCom_CrackedPavementA_1K_albedo.jpg" />
+        <img id="skyTexture" src="Dia6/OnetangiSportsgroundPark_360_Midday_001.jpg" />
+        
+        <!-- Cargo el modelo animado -->
+        <a-asset-item id="StrutWalkingGLB" src="Dia6/StrutWalking.glb"></a-asset-item> 
+      </a-assets>
+
+      <a-sky src="#skyTexture"></a-sky>  
+
+      <!-- Cámara y luces -->
+      <a-entity position="7 1 -6.5" rotation="-4 140 0">
+        <a-camera></a-camera>
+      </a-entity>
+
+      <a-entity light="type: ambient; intensity: 0.5"></a-entity>
+      <a-entity light="type: directional; intensity: 0.8" position="2 4 1"></a-entity>
+
+      <!-- Casa -->
+      <a-entity 
+        gltf-model="#houseModel" 
+        position="0 0 0" 
+        scale="1 1 1">
+      </a-entity>
+
+      <!-- Personaje que se mueve en Z, luego X, luego X+ Y-, luego solo X -->
+      <a-entity 
+        id="jesse"
+        gltf-model="#jesseModel" 
+        position="-2 0.5 3" 
+        scale="0.015 0.015 0.015"
+        animation__z="property: position; to: -2 0.5 -2; dur: 3000; easing: linear; delay: 3000"
+        animation__x="property: position; to: 2.5 0.5 -2; dur: 3000; easing: linear; startEvents: moveX"
+        animation__xy="property: position; to: 5 0.2 -2; dur: 2000; easing: easeInOutQuad; startEvents: moveXY"
+        animation__xforward="property: position; to: 8 0.2 -2; dur: 3000; easing: linear; startEvents: moveForward">
+      </a-entity>
+      
+      <!-- Personaje animado -->
+      <a-entity
+        id="walker"
+        gltf-model="#StrutWalkingGLB" 
+        scale="1 1 1"
+        position="2 0.5 0"
+        rotation="0 170"
+        animation-mixer>
+      </a-entity>
+
+
+      <!-- Silla de ruedas con animación retrasada -->
+      <a-entity 
+        id="wheelchair"
+        rotation="0 90 0"
+        gltf-model="#wheelchairModel" 
+        position="-2 1.5 5" 
+        scale="0.9 0.9 0.9"
+        animation__z="property: position; to: -2 1.5 -2; dur: 4000; easing: linear; delay: 3500"
+        animation__x="property: position; to: 2.5 1.5 -2; dur: 3000; easing: linear; startEvents: moveX; delay: 2000">
+      </a-entity>
+
+      <script>
+        AFRAME.registerComponent('walk-sequence', {
+          init: function () {
+            const el = this.el;
+
+            el.addEventListener('animationcomplete__z', function () {
+              el.emit('moveX');
+            });
+
+            el.addEventListener('animationcomplete__x', function () {
+              el.emit('moveXY');
+            });
+
+            el.addEventListener('animationcomplete__xy', function () {
+              el.emit('moveForward');
+            });
+          }
+        });
+
+        document.querySelector('#jesse').setAttribute('walk-sequence', '');
+        document.querySelector('#wheelchair').setAttribute('walk-sequence', '');
+      </script>
+
+      <!-- Suelo con textura -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" src="#groundTexture" repeat="10 10"> </a-plane>
+    </a-scene>
+  </body>
+</html>

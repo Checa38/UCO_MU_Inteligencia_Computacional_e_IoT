@@ -1,0 +1,95 @@
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+
+    <a-assets>
+      <img id="floor-texture" src="ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+      <img id="sky-texture" src="ImageTextures/StreetView360.jpg">
+
+      <a-asset-item id="catapult-o" src="cottage_obj.obj"></a-asset-item>
+      <a-asset-item id="catapult-m" src="cottage_obj.mtl"></a-asset-item>
+      
+      <a-asset-item id="bugatti-o" src="bugatti.obj"></a-asset-item>
+      <a-asset-item id="bugatti-m" src="bugatti.mtl"></a-asset-item>
+      
+      <a-asset-item id="FuturisticApartment-o" src="FuturisticApartment.obj"></a-asset-item>
+      <a-asset-item id="FuturisticApartment-m" src="FuturisticApartment.mtl"></a-asset-item>
+      
+      <a-asset-item id="tree-o" src="Tree1/Tree1.obj"></a-asset-item>
+      <a-asset-item id="tree-m" src="Tree1/Tree1.mtl"></a-asset-item>
+      
+      <a-asset-item id="ironman-o" src="IronMan/IronMan.obj"></a-asset-item>
+      <a-asset-item id="ironman-m" src="IronMan/IronMan.mtl"></a-asset-item> 
+      
+      <a-asset-item id="Samsung_Smart_TV_55_Zoll-o" src="Samsung_Smart_TV_55_Zoll/Samsung Smart TV 55 Zoll.obj"></a-asset-item>
+      <a-asset-item id="Samsung_Smart_TV_55_Zoll-m" src="Samsung_Smart_TV_55_Zoll/Samsung_Smart_TV_55_Zoll.mtl"></a-asset-item> 
+    </a-assets>
+    
+     <!-- Suelo -->
+    <a-plane position="0 -20 0" rotation="-90 0 0" scale="10 10 1" width="100" height="100" 
+             material="src: #floor-texture; repeat: 5 5;"></a-plane>
+
+    <!-- Cielo -->
+    <a-sky src="#sky-texture"></a-sky>
+
+    <a-entity position="-4 2 -7" rotation="-90 0 0" geometry="primitive: box; width: 4; height: 2; depth: 0.25"
+              material="color: green">
+
+      <a-entity position="2 0 0.2" rotation="90 0 0" geometry="primitive: circle; radius: 1"
+                material="color: #333333; side: double">
+      </a-entity>
+
+      <a-entity id="yellowButton" position="-2 0 0.2" rotation="90 0 0" geometry="primitive: circle; radius: 1"
+                material="color: #FFC107; side: double" class="clickable">
+      </a-entity>
+    </a-entity>
+
+    <a-entity id="camera1" camera look-controls position="0 1.6 0">
+      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
+    </a-entity>
+
+    <a-entity id="camera2" camera="active: false" position="5 3 -5" look-controls></a-entity>
+
+    <!-- Script para cambiar de cámara -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const yellowButton = document.getElementById('yellowButton');
+        const camera1 = document.getElementById('camera1');
+        const camera2 = document.getElementById('camera2');
+
+        yellowButton.addEventListener('click', function () {
+          camera1.setAttribute('camera', 'active', false);
+          camera2.setAttribute('camera', 'active', true);
+        });
+      });
+    </script>
+    
+    
+    <!-- Modelos -->
+    <a-entity position="0 1.6 0">
+      <a-camera wasd-controls look-controls>
+      </a-camera>
+    </a-entity>
+
+    <a-entity obj-model="obj:#catapult-o; mtl:#catapult-m" position="-10 0 50" scale="1.5 1.5 1.5"
+      rotation="0 200 0"></a-entity>
+    <a-entity obj-model="obj:#bugatti-o; mtl:#bugatti-m" position="-37 0.1 52" scale="1.5 1.5 1.5"
+      rotation="0 200 0"></a-entity>
+    <a-entity obj-model="obj:#FuturisticApartment-o; mtl:#FuturisticApartment-m" position="-70 0.1 55" scale="1.5 1.5 1.5"
+      rotation="0 200 0"></a-entity>
+    <a-entity obj-model="obj:#ironman-o; mtl:#ironman-m" position="-70 0.1 27" scale="0.03 0.03 0.03"
+      rotation="0 200 0"></a-entity>
+    <a-entity obj-model="obj:#Samsung_Smart_TV_55_Zoll-o; mtl:#Samsung_Smart_TV_55_Zoll-m" position="-70 0.1 27" scale="0.1 0.1 0.1"
+      rotation="0 200 0"></a-entity>
+
+
+    
+  </a-scene>
+</body>
+
+</html>
