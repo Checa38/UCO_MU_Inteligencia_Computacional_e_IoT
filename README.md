@@ -39,7 +39,7 @@ Este repositorio tiene como finalidad:
 
 ## 🛠 Tecnologías y Herramientas Utilizadas
 
-- Python, R, JavaScript  
+- Python, R, JavaScript, C++, VHDL
 - TensorFlow, PyTorch, Scikit-learn  
 - Apache Spark, Hadoop  
 - Unity  
