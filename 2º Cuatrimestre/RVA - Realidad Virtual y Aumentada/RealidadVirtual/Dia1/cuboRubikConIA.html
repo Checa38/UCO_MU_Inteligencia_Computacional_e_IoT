@@ -1,0 +1,41 @@
+<!-- Prompt usado: Crea un cubo de rubik de 3x3 con html en aframe -->
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity position="-1 -0.4 -3">
+        <a-entity id="rubiks-cube">
+          <script>
+            AFRAME.registerComponent('rubik', {
+              init: function () {
+                const COLORS = ['red', 'green', 'blue', 'yellow', 'white', 'orange'];
+                let size = 0.35;
+                let spacing = 0.02;
+                let offset = (size * 3 + spacing * 2) / 2 - size / 2;
+                let positions = [];
+                
+                for (let x = 0; x < 3; x++) {
+                  for (let y = 0; y < 3; y++) {
+                    for (let z = 0; z < 3; z++) {
+                      let cube = document.createElement('a-box');
+                      cube.setAttribute('position', `${x * (size + spacing) - offset} ${y * (size + spacing) - offset} ${z * (size + spacing) - offset}`);
+                      cube.setAttribute('depth', size);
+                      cube.setAttribute('height', size);
+                      cube.setAttribute('width', size);
+                      cube.setAttribute('color', COLORS[Math.floor(Math.random() * COLORS.length)]);
+                      this.el.appendChild(cube);
+                    }
+                  }
+                }
+              }
+            });
+          </script>
+          <a-entity rubik></a-entity>
+        </a-entity>
+      </a-entity>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
