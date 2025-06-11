@@ -52,8 +52,8 @@ Este repositorio tiene como finalidad:
 ## 👤 Autor
 
 **Carlos Checa Moreno**  
-Máster en Inteligencia Computacional e IoT  
-Universidad de Córdoba  
+Máster Universitario en Inteligencia Computacional e IoT  
+Universidad de Córdoba 2024/25
 
 ---
 
